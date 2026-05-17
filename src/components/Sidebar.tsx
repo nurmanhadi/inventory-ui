@@ -9,9 +9,9 @@ const Sidebar: Component<{}> = (props) => {
             {/* dashboard */}
             <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300">Dashboard</a>
             {/* products */}
-            <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300">Products</a>
+            <a href="/products" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300">Products</a>
             {/* categories */}
-            <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300">Categories</a>
+            <a href="/categories" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300">Categories</a>
             {/* transactions */}
             <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300">Transactions</a>
             {/* reports */}

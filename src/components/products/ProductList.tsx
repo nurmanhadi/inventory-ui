@@ -1,8 +1,9 @@
-import { Component } from "solid-js";
+import { Component, For } from "solid-js";
 import { ProductResponse } from "../../apis/dtos/product-dto";
+import { useNavigate } from "@solidjs/router";
 
 const ProductList: Component<{ products: ProductResponse[] }> = (props) => {
-
+    const navigate = useNavigate();
     return (
         <div class="overflow-x-auto">
             <table class="table">
@@ -16,15 +17,17 @@ const ProductList: Component<{ products: ProductResponse[] }> = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.products.map((e, i) => (
-                        <tr accessKey={e.id.toString()}>
-                            <th>{i + 1}</th>
-                            <td>{e.sku}</td>
-                            <td>{e.name}</td>
-                            <td>{e.stock}</td>
-                            <td>{e.price.toFixed(2)}</td>
-                        </tr>
-                    ))}
+                    <For each={props.products}>
+                        {(item, index) => (
+                            <tr onClick={() => navigate(`/products/${item.id}`)}>
+                                <th>{index() + 1}</th>
+                                <td>{item.sku}</td>
+                                <td>{item.name}</td>
+                                <td>{item.stock}</td>
+                                <td>{item.price.toFixed(2)}</td>
+                            </tr>
+                        )}
+                    </For>
                 </tbody>
             </table>
         </div>
