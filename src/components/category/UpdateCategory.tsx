@@ -29,6 +29,7 @@ const UpdateCategory: Component<{ id: string, onSuccess: () => Promise<void> }> 
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">Name</legend>
                 <input
+                    required
                     disabled={load()}
                     value={name()}
                     onInput={(e) => setName(e.target.value)}

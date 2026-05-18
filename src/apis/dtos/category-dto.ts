@@ -1,5 +1,5 @@
 export type CategoryResponse = {
-    id: bigint;
+    id: number;
     name: string;
 }
 export type CategoryRequest = {

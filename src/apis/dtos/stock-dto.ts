@@ -2,13 +2,13 @@ import { StockType } from "../../helpers/stock-type";
 import { ProductMinimalResponse } from "./product-dto";
 
 export type StockResponse = {
-    id: bigint;
+    id: number;
     type: StockType
-    quantity: Number;
+    quantity: number;
     created_at: string;
     product: ProductMinimalResponse;
 }
 export type StockRequest = {
-    product_id: bigint;
-    quantity: Number;
+    product_id: number;
+    quantity: number;
 }

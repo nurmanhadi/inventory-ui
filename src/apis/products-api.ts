@@ -2,7 +2,7 @@ import { API_URL } from "../configs/environtment";
 import { ProductAddRequest, ProductResponse, ProductUpdateRequest } from "./dtos/product-dto";
 import { WebPagination, WebResponse } from "./dtos/web-dto";
 
-export const apiGetProducts = async (page: number, size: number, search?: string, categoryId?: bigint): Promise<WebPagination<ProductResponse[]>> => {
+export const apiGetProducts = async (page: number, size: number, search?: string, categoryId?: bigint): Promise<WebResponse<WebPagination<ProductResponse[]>>> => {
     let query: string = `?page=${page}&size=${size}`;
     if (search) {
         query += `&search=${search}`;
@@ -17,12 +17,10 @@ export const apiGetProducts = async (page: number, size: number, search?: string
     if (response.status !== 200) {
         throw new Error(web.message);
     }
-
-    const data: WebPagination<ProductResponse[]> = web.data;
-    return data;
+    return web;
 }
 
-export const apiGetProductById = async (id: string): Promise<ProductResponse> => {
+export const apiGetProductById = async (id: string): Promise<WebResponse<ProductResponse>> => {
     const response = await fetch(`${API_URL}/products/${id}`, {
         method: "GET",
     });
@@ -30,10 +28,10 @@ export const apiGetProductById = async (id: string): Promise<ProductResponse> =>
     if (response.status !== 200) {
         throw new Error(web.message);
     }
-    return web.data;
+    return web;
 }
 
-export const apiAddProduct = async (request: ProductAddRequest): Promise<void> => {
+export const apiAddProduct = async (request: ProductAddRequest): Promise<WebResponse<null>> => {
     const response = await fetch(`${API_URL}/products`, {
         method: "POST",
         headers: {
@@ -41,13 +39,15 @@ export const apiAddProduct = async (request: ProductAddRequest): Promise<void> =
         },
         body: JSON.stringify(request)
     });
-    if (response.status !== 200) {
-        const web: WebResponse<null> = await response.json();
+    const web: WebResponse<null> = await response.json();
+    if (response.status !== 201) {
         throw new Error(web.message);
     }
+    return web
 }
 
-export const apiUpdateProduct = async (id: string, request: ProductUpdateRequest): Promise<void> => {
+export const apiUpdateProduct = async (id: string, request: ProductUpdateRequest): Promise<WebResponse<null>> => {
+    console.log(request);
     const response = await fetch(`${API_URL}/products/${id}`, {
         method: "PUT",
         headers: {
@@ -55,18 +55,20 @@ export const apiUpdateProduct = async (id: string, request: ProductUpdateRequest
         },
         body: JSON.stringify(request)
     });
+    const web: WebResponse<null> = await response.json();
     if (response.status !== 200) {
-        const web: WebResponse<null> = await response.json();
         throw new Error(web.message);
     }
+    return web
 }
 
-export const apiDeleteProduct = async (id: string): Promise<void> => {
+export const apiDeleteProduct = async (id: string): Promise<WebResponse<null>> => {
     const response = await fetch(`${API_URL}/products/${id}`, {
         method: "DELETE",
     });
+    const web: WebResponse<null> = await response.json();
     if (response.status !== 200) {
-        const web: WebResponse<null> = await response.json();
         throw new Error(web.message);
     }
+    return web
 }

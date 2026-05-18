@@ -26,7 +26,7 @@ const ProductDetail: Component<{ product: ProductResponse }> = (props) => {
             <div class="card p-6 shadow w-full">
                 <h2 class="text-lg font-semibold mb-4">Product Info</h2>
                 <div class="space-y-2 text-sm">
-                    <p>ID: {props.product.id.toString()}</p>
+                    <p>ID: {props.product.id}</p>
                     <p>SKU: {props.product.sku}</p>
                     <p>Stock: {props.product.stock}</p>
                 </div>

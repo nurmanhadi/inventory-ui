@@ -4,14 +4,15 @@ import { useParams } from "@solidjs/router";
 import { ProductResponse } from "../apis/dtos/product-dto";
 import { apiGetProductById } from "../apis/products-api";
 import Loading from "../components/Loading";
+import UpdateProduct from "../components/products/UpdateProduct";
 
 const ProductDetailPage: Component<{}> = (props) => {
     const params = useParams();
     const [product, setProduct] = createSignal<ProductResponse>();
     const fetchproduct = async (id: string) => {
         try {
-            const data = await apiGetProductById(id);
-            setProduct(data);
+            const web = await apiGetProductById(id);
+            setProduct(web.data);
         } catch (error) {
             console.error(error);
         }
@@ -23,6 +24,7 @@ const ProductDetailPage: Component<{}> = (props) => {
         <Show when={product()} fallback={<Loading />}>
             <ProductDetail product={product()!} />
             <hr class="my-6" />
+            <UpdateProduct id={params.id!} product={product()!} onSuccess={() => fetchproduct(params.id!)} />
         </Show>
     );
 };

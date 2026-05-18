@@ -1,14 +1,14 @@
 export type ProductResponse = {
-    id: bigint;
+    id: number;
     name: string;
     sku: string;
     stock: number;
     price: number;
     created_at: string;
-    category_id: bigint;
+    category_id: number;
 }
 export type ProductMinimalResponse = {
-    id: bigint;
+    id: number;
     name: string;
     sku: string;
 }
@@ -17,12 +17,12 @@ export type ProductAddRequest = {
     sku: string;
     stock: number;
     price: number;
-    category_id: bigint;
+    category_id: number;
 }
 export type ProductUpdateRequest = {
-    name: string;
-    sku: string;
-    stock: number;
-    price: number;
-    category_id: bigint;
+    name?: string;
+    sku?: string;
+    stock?: number;
+    price?: number;
+    category_id?: number;
 }

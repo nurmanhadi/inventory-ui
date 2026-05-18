@@ -6,7 +6,7 @@ const CategoryDetail: Component<{ category: CategoryResponse }> = (props) => {
     return (
         <div>
             <h2>Name: {props.category.name}</h2>
-            <p>Id: {props.category.id.toString()}</p>
+            <p>Id: {props.category.id}</p>
         </div>
     );
 };
