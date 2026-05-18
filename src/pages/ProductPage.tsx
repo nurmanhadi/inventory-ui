@@ -7,7 +7,7 @@ import Pagination from "../components/Pagination";
 import Loading from "../components/Loading";
 
 const ProductPage: Component<{}> = (props) => {
-    const [products, setProducts] = createSignal<ProductResponse[]>([]);
+    const [products, setProducts] = createSignal<ProductResponse[]>();
     const [page, setPage] = createSignal<number>(1);
     const [totalPages, setTotalPages] = createSignal<number>(1);
 
@@ -26,7 +26,7 @@ const ProductPage: Component<{}> = (props) => {
     })
     return (
         <Show when={products()} fallback={<Loading />}>
-            <ProductList products={products()} />
+            <ProductList products={products()!} />
             <div class="flex justify-end mt-4">
                 <Pagination page={page()} totalPages={totalPages()} onPageChange={setPage} />
             </div>

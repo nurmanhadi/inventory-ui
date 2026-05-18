@@ -2,8 +2,9 @@ import { Component, createSignal } from "solid-js";
 import { apiAddCategory } from "../../apis/category-api";
 import { CategoryRequest } from "../../apis/dtos/category-dto";
 import LoadingSm from "../LoadingSm";
+import { closeModal, showModal } from "../../helpers/modal";
 
-const AddCategory: Component<{}> = (props) => {
+const AddCategory: Component<{ onSuccess: () => Promise<void> }> = (props) => {
     const [name, setName] = createSignal<string>("")
     const [load, setLoad] = createSignal<boolean>(false)
     const handleSubmit = async (e: SubmitEvent) => {
@@ -15,23 +16,18 @@ const AddCategory: Component<{}> = (props) => {
             }
             const web = await apiAddCategory(category)
             alert(web.message)
+            await props.onSuccess()
             setName("")
+            closeModal("my_modal_3")
         } catch (error) {
             console.error(error);
         } finally {
             setLoad(false)
         }
     }
-
-    const showModal3 = () => {
-        const modal = document.getElementById("my_modal_3") as HTMLDialogElement;
-        if (modal) {
-            modal.showModal()
-        }
-    }
     return (
         <div>
-            <button class="btn" onClick={showModal3}>Add</button>
+            <button class="btn" onClick={() => showModal("my_modal_3")}>Add</button>
             <dialog id="my_modal_3" class="modal">
                 <div class="modal-box">
                     <form method="dialog">

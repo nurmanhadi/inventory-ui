@@ -21,7 +21,7 @@ const CategoryPage: Component<{}> = (props) => {
     return (
         <Show when={categories()} fallback={<Loading />}>
             <div class="flex gap-4">
-                <AddCategory />
+                <AddCategory onSuccess={fetchCategories} />
             </div>
             <hr class="my-6" />
             <CategoryList categories={categories()!} />
