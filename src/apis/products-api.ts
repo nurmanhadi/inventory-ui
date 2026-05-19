@@ -47,7 +47,6 @@ export const apiAddProduct = async (request: ProductAddRequest): Promise<WebResp
 }
 
 export const apiUpdateProduct = async (id: string, request: ProductUpdateRequest): Promise<WebResponse<null>> => {
-    console.log(request);
     const response = await fetch(`${API_URL}/products/${id}`, {
         method: "PUT",
         headers: {

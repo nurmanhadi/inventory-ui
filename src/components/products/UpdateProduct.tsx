@@ -9,7 +9,7 @@ import LoadingLg from "../LoadingLg";
 const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess: () => Promise<void> }> = (props) => {
     const [name, setName] = createSignal<string>("")
     const [sku, setSku] = createSignal<string>("")
-    const [price, setPrice] = createSignal<number>(0)
+    const [price, setPrice] = createSignal<number>()
     const [categoryId, setCategoryId] = createSignal<number>()
     const [load, setLoad] = createSignal<boolean>(false)
     const [categories, setCategories] = createSignal<CategoryResponse[]>()
@@ -37,7 +37,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
             closeModal("my_modal_3")
             setName("")
             setSku("")
-            setPrice(0)
+            setPrice()
             setCategoryId()
         } catch (error) {
             console.error(error);
@@ -50,7 +50,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
     })
     return (
         <div>
-            <button class="btn" onClick={() => showModal("my_modal_3")}>Add</button>
+            <button class="btn" onClick={() => showModal("my_modal_3")}>Update</button>
             <dialog id="my_modal_3" class="modal">
                 <div class="modal-box">
                     <form method="dialog">
