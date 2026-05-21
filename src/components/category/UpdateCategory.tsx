@@ -25,24 +25,27 @@ const UpdateCategory: Component<{ id: string, onSuccess: () => Promise<void> }> 
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <fieldset class="fieldset">
-                <legend class="fieldset-legend">Name</legend>
-                <input
-                    required
-                    disabled={load()}
-                    value={name()}
-                    onInput={(e) => setName(e.target.value)}
-                    type="text"
-                    class="input"
-                    placeholder="Type here" />
-            </fieldset>
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">
-                    {!load() ? "Submit" : <LoadingSm />}
-                </button>
-            </div>
-        </form>
+        <div>
+            <h2 class="font-bold text-xl">Update</h2>
+            <form onSubmit={handleSubmit}>
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Name</legend>
+                    <input
+                        required
+                        disabled={load()}
+                        value={name()}
+                        onInput={(e) => setName(e.target.value)}
+                        type="text"
+                        class="input"
+                        placeholder="Type here" />
+                </fieldset>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        {!load() ? "Submit" : <LoadingSm />}
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 };
 

@@ -5,6 +5,7 @@ import { ProductResponse } from "../apis/dtos/product-dto";
 import { apiGetProductById } from "../apis/products-api";
 import Loading from "../components/Loading";
 import UpdateProduct from "../components/products/UpdateProduct";
+import StockHistoryList from "../components/stock/StockHistoryList";
 
 const ProductDetailPage: Component<{}> = (props) => {
     const params = useParams();
@@ -25,6 +26,8 @@ const ProductDetailPage: Component<{}> = (props) => {
             <ProductDetail product={product()!} />
             <hr class="my-6" />
             <UpdateProduct id={params.id!} product={product()!} onSuccess={() => fetchproduct(params.id!)} />
+            <hr class="my-6" />
+            <StockHistoryList id={params.id!} />
         </Show>
     );
 };

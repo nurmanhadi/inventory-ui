@@ -1,4 +1,5 @@
 export enum StockType {
+    All = "ALL",
     In = "IN",
     Out = "OUT"
 }

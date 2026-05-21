@@ -5,6 +5,7 @@ import ProductPage from './pages/ProductPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CategoryPage from './pages/CategoryPage';
 import CategoryDetailPage from './pages/CategoryDetailPage';
+import TransactionPage from './pages/TransactionPage';
 
 const App: Component = () => {
   return (
@@ -23,6 +24,10 @@ const App: Component = () => {
           <Route path={"/:id"} component={ProductDetailPage} />
         </Route>
 
+        {/* transaction */}
+        <Route path={"/transactions"}>
+          <Route path={"/"} component={TransactionPage} />
+        </Route>
       </Route>
     </Router >
   );

@@ -13,7 +13,7 @@ const Sidebar: Component<{}> = (props) => {
             {/* categories */}
             <a href="/categories" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300 hover:text-black">Categories</a>
             {/* transactions */}
-            <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300 hover:text-black">Transactions</a>
+            <a href="/transactions" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300 hover:text-black">Transactions</a>
             {/* reports */}
             <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300 hover:text-black">Reports</a>
 
