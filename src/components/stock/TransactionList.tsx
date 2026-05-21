@@ -11,6 +11,8 @@ const TransactionList: Component<{ transactions: StockResponse[] }> = (props) =>
                 <thead>
                     <tr>
                         <th>Date</th>
+                        <th>SKU</th>
+                        <th>Name</th>
                         <th>Type</th>
                         <th>Quantity</th>
                     </tr>
@@ -20,6 +22,8 @@ const TransactionList: Component<{ transactions: StockResponse[] }> = (props) =>
                         {(item, index) => (
                             <tr>
                                 <td>{dateFormated(item.created_at)}</td>
+                                <td>{item.product.sku}</td>
+                                <td>{item.product.name}</td>
                                 <td><span class={`badge ${item.type == StockType.In ? "badge-success" : "badge-error"}`}>
                                     {item.type}
                                 </span></td>

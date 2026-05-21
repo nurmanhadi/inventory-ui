@@ -21,7 +21,7 @@ const ProductPage: Component<{}> = (props) => {
             console.error(error);
         }
     }
-    onMount(() => {
+    createEffect(() => {
         fetchProducts(page());
     })
     return (
