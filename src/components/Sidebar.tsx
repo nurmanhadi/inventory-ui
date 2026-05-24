@@ -9,7 +9,7 @@ const Sidebar: Component<{}> = (props) => {
             {/* logo */}
             <div class="text-2xl text-center font-bold mb-6">Inventory UI</div>
             <div>
-                <SearchForm onSearch={(search) => nav(`/s?src=${search}`)} />
+                <SearchForm onSearch={(search) => nav(`/products?s=${search}`)} />
             </div>
             {/* dashboard */}
             <a href="" class="flex items-center px-4 py-2 rounded-lg hover:bg-base-300 hover:text-black">Dashboard</a>

@@ -12,7 +12,7 @@ const ProductPage: Component<{}> = (props) => {
     const [products, setProducts] = createSignal<ProductResponse[]>();
     const [page, setPage] = createSignal<number>(1);
     const [totalPages, setTotalPages] = createSignal<number>(1);
-    const search = Array.isArray(query.s) ? query.s[0] : query.s
+    const search = () => Array.isArray(query.s) ? query.s[0] : query.s
 
 
     const fetchProducts = async (page: number, search?: string) => {
@@ -26,11 +26,11 @@ const ProductPage: Component<{}> = (props) => {
         }
     }
     createEffect(() => {
-        fetchProducts(page(), search);
+        fetchProducts(page(), search());
     })
     return (
         <Show when={products()} fallback={<Loading />}>
-            <Show when={!search} fallback>
+            <Show when={!search()} fallback>
                 <AddProduct onSuccess={() => fetchProducts(page())} />
                 <hr class="my-6" />
             </Show>
