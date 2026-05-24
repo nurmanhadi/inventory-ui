@@ -41,7 +41,7 @@ const AddCategory: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                                 required
                                 disabled={load()}
                                 value={name()}
-                                onInput={(e) => setName(e.target.value)}
+                                onInput={(e) => setName(e.currentTarget.value)}
                                 type="text"
                                 class="input w-full"
                                 placeholder="Type here" />

@@ -69,7 +69,7 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                                 required
                                 disabled={load()}
                                 value={name()}
-                                onInput={(e) => setName(e.target.value)}
+                                onInput={(e) => setName(e.currentTarget.value)}
                                 type="text"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -82,7 +82,7 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                                 required
                                 disabled={load()}
                                 value={sku()}
-                                onInput={(e) => setSku(e.target.value)}
+                                onInput={(e) => setSku(e.currentTarget.value)}
                                 type="text"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -95,7 +95,7 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                                 required
                                 disabled={load()}
                                 value={stock()}
-                                onInput={(e) => setStock(Number(e.target.value))}
+                                onInput={(e) => setStock(Number(e.currentTarget.value))}
                                 type="number"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -108,7 +108,7 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                                 required
                                 disabled={load()}
                                 value={price()}
-                                onInput={(e) => setPrice(Number(e.target.value))}
+                                onInput={(e) => setPrice(Number(e.currentTarget.value))}
                                 type="number"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -121,13 +121,13 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                                 required
                                 disabled={load()}
                                 value={categoryId()?.toString() ?? ""}
-                                onChange={(e) => setCategoryId(Number(e.target.value))}
+                                onChange={(e) => setCategoryId(Number(e.currentTarget.value))}
                                 class="select w-full"
                             >
                                 <option disabled value="" selected>Select Category</option>
                                 <Show when={categories()} fallback={<LoadingLg />}>
                                     <For each={categories()}>
-                                        {(item, intex) => (
+                                        {(item, index) => (
                                             <option value={item.id.toString()}>
                                                 {item.name}
                                             </option>

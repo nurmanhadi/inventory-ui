@@ -1,6 +1,5 @@
 import { Component, createSignal, For, onMount, Show } from "solid-js";
 import { StockResponse } from "../../apis/dtos/stock-dto";
-import Loading from "../Loading";
 import LoadingLg from "../LoadingLg";
 import { apiStockHistory } from "../../apis/stock-api";
 import { StockPeriod, StockType } from "../../helpers/stock-type";
@@ -10,7 +9,7 @@ const StockHistoryList: Component<{ id: string }> = (props) => {
     const [transaction, setTransaction] = createSignal<StockResponse[]>()
     const fetchStockHistory = async (id: string) => {
         try {
-            const web = await apiStockHistory(1, 10, StockPeriod.Current, id)
+            const web = await apiStockHistory(1, 10, StockType.All, StockPeriod.Current, id)
             setTransaction(web.data.contents)
         } catch (error) {
             console.error(error);

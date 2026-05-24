@@ -64,7 +64,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
                             <input
                                 disabled={load()}
                                 value={props.product.name}
-                                onInput={(e) => setName(e.target.value)}
+                                onInput={(e) => setName(e.currentTarget.value)}
                                 type="text"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -76,7 +76,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
                             <input
                                 disabled={load()}
                                 value={props.product.sku}
-                                onInput={(e) => setSku(e.target.value)}
+                                onInput={(e) => setSku(e.currentTarget.value)}
                                 type="text"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -88,7 +88,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
                             <input
                                 disabled={load()}
                                 value={props.product.price}
-                                onInput={(e) => setPrice(Number(e.target.value))}
+                                onInput={(e) => setPrice(Number(e.currentTarget.value))}
                                 type="number"
                                 class="input w-full"
                                 placeholder="Type here" />
@@ -100,7 +100,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
                             <select
                                 disabled={load()}
                                 value={props.product.category_id}
-                                onChange={(e) => setCategoryId(Number(e.target.value))}
+                                onChange={(e) => setCategoryId(Number(e.currentTarget.value))}
                                 class="select w-full"
                             >
                                 <option disabled value="" selected>Select Category</option>

@@ -34,7 +34,7 @@ const UpdateCategory: Component<{ id: string, onSuccess: () => Promise<void> }> 
                         required
                         disabled={load()}
                         value={name()}
-                        onInput={(e) => setName(e.target.value)}
+                        onInput={(e) => setName(e.currentTarget.value)}
                         type="text"
                         class="input"
                         placeholder="Type here" />

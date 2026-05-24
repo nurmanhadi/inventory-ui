@@ -6,11 +6,14 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CategoryPage from './pages/CategoryPage';
 import CategoryDetailPage from './pages/CategoryDetailPage';
 import TransactionPage from './pages/TransactionPage';
+import SearchPage from './pages/SearchPage';
 
 const App: Component = () => {
   return (
     <Router>
       <Route path={"/"} component={PageLayout} >
+
+        <Route path={"/s"} component={SearchPage} />
 
         {/* categories */}
         <Route path={"/categories"}>
