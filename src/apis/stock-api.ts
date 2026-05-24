@@ -31,7 +31,7 @@ export const apiStockOut = async (stock: StockRequest): Promise<WebResponse<null
     }
     return web
 }
-export const apiStockHistory = async (page: Number, size: Number, type: StockType, period: StockPeriod, productId?: string): Promise<WebResponse<WebPagination<StockResponse[]>>> => {
+export const apiStockHistory = async (page: number, size: number, type: StockType, period: StockPeriod, productId?: string): Promise<WebResponse<WebPagination<StockResponse[]>>> => {
     let query: string = `?page=${page}&size=${size}&period=${period}`
     if (productId) {
         query += `&productId=${productId}`

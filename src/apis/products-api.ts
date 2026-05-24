@@ -2,7 +2,7 @@ import { API_URL } from "../configs/environtment";
 import { ProductAddRequest, ProductResponse, ProductUpdateRequest } from "./dtos/product-dto";
 import { WebPagination, WebResponse } from "./dtos/web-dto";
 
-export const apiGetProducts = async (page: number, size: number, search?: string, categoryId?: bigint): Promise<WebResponse<WebPagination<ProductResponse[]>>> => {
+export const apiGetProducts = async (page: number, size: number, search?: string, categoryId?: number): Promise<WebResponse<WebPagination<ProductResponse[]>>> => {
     let query: string = `?page=${page}&size=${size}`;
     if (search) {
         query += `&search=${search}`;
