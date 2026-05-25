@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination";
 import { StockResponse } from "../apis/dtos/stock-dto";
 import TransactionList from "../components/stock/TransactionList";
 import Loading from "../components/Loading";
+import AddStock from "../components/stock/AddStock";
 
 const TransactionPage: Component<{}> = (props) => {
     const [stock, setStock] = createSignal<StockResponse[]>()
@@ -30,14 +31,21 @@ const TransactionPage: Component<{}> = (props) => {
     })
     return (
         <div>
-            <div class="flex justify-end mb-3">
-                <StockFilter type={type()} onTypeChange={setType} period={period()} onPeriodChange={setPeriod} />
+            <div>
+                <h2 class="mb-3 font-bold text-2xl">Add Stock</h2>
+                <AddStock onSuccess={() => fetchHistory(page(), period(), type())} />
             </div>
-            <Show when={stock()} fallback={<Loading />}>
-                <TransactionList transactions={stock()!} />
-            </Show>
-            <div class="flex justify-center mt-6">
-                <Pagination page={page()} totalPages={totalPages()} onPageChange={setPage} />
+            <hr class="my-6" />
+            <div>
+                <div class="flex justify-end mb-3">
+                    <StockFilter type={type()} onTypeChange={setType} period={period()} onPeriodChange={setPeriod} />
+                </div>
+                <Show when={stock()} fallback={<Loading />}>
+                    <TransactionList transactions={stock()!} />
+                </Show>
+                <div class="flex justify-center mt-6">
+                    <Pagination page={page()} totalPages={totalPages()} onPageChange={setPage} />
+                </div>
             </div>
         </div>
     );

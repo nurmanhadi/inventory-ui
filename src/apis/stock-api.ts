@@ -3,22 +3,14 @@ import { StockPeriod, StockType } from "../helpers/stock-type";
 import { StockRequest, StockResponse } from "./dtos/stock-dto";
 import { WebPagination, WebResponse } from "./dtos/web-dto";
 
-export const apiStockIn = async (stock: StockRequest): Promise<WebResponse<null>> => {
-    const response = await fetch(`${API_URL}/stocks/in`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(stock)
-    });
-    const web: WebResponse<null> = await response.json();
-    if (response.status !== 200) {
-        throw new Error(web.message);
+export const apiAddStock = async (stock: StockRequest, type: StockType): Promise<WebResponse<null>> => {
+    let query = ""
+    if (type === StockType.In) {
+        query += "in"
+    } else {
+        query += "out"
     }
-    return web
-}
-export const apiStockOut = async (stock: StockRequest): Promise<WebResponse<null>> => {
-    const response = await fetch(`${API_URL}/stocks/out`, {
+    const response = await fetch(`${API_URL}/stocks/${query}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

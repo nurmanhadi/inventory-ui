@@ -25,7 +25,6 @@ const SearchForm: Component<{ onSearch: (search: string) => void }> = (props) =>
                     value={search()}
                     onInput={(e) => setSearch(e.currentTarget.value)}
                     type="search"
-                    required
                     placeholder="Search" />
             </label>
         </form>
