@@ -8,6 +8,7 @@ import CategoryDetailPage from './pages/CategoryDetailPage';
 import TransactionPage from './pages/TransactionPage';
 import DashboardPage from './pages/DashboardPage';
 import InternalServcerErrorPage from './pages/InternalServcerErrorPage';
+import NotfoundPage from './pages/NotfoundPage';
 
 const App: Component = () => {
   return (
@@ -41,6 +42,8 @@ const App: Component = () => {
       {/* internal server error */}
       <Route path={"/500"} component={InternalServcerErrorPage} />
 
+      {/* page not found */}
+      <Route path={"*"} component={NotfoundPage} />
     </Router >
   );
 };
