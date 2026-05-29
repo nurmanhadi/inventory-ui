@@ -6,6 +6,7 @@ import { apiGetProductById } from "../apis/products-api";
 import Loading from "../components/Loading";
 import UpdateProduct from "../components/products/UpdateProduct";
 import StockHistoryList from "../components/stock/StockHistoryList";
+import { catchError } from "../helpers/catch-error";
 
 const ProductDetailPage: Component<{}> = (props) => {
     const params = useParams();
@@ -15,7 +16,7 @@ const ProductDetailPage: Component<{}> = (props) => {
             const web = await apiGetProductById(id);
             setProduct(web.data);
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     onMount(() => {

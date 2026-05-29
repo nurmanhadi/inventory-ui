@@ -7,6 +7,7 @@ import { StockResponse } from "../apis/dtos/stock-dto";
 import TransactionList from "../components/stock/TransactionList";
 import Loading from "../components/Loading";
 import AddStock from "../components/stock/AddStock";
+import { catchError } from "../helpers/catch-error";
 
 const TransactionPage: Component<{}> = (props) => {
     const [stock, setStock] = createSignal<StockResponse[]>()
@@ -23,7 +24,7 @@ const TransactionPage: Component<{}> = (props) => {
             setPage(web.data.page)
             setTotalPages(web.data.total_pages)
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     createEffect(() => {

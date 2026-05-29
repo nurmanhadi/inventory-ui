@@ -8,12 +8,10 @@ import { apiGetProducts } from "../../apis/products-api";
 import SearchForm from "../SearchForm";
 import ProductMinimalList from "../products/ProductMinimalList";
 import LoadingLg from "../LoadingLg";
-import { useNavigate } from "@solidjs/router";
 import { showAlertSuccess } from "../../helpers/alert";
 import { catchError } from "../../helpers/catch-error";
 
 const AddStock: Component<{ onSuccess: () => Promise<void> }> = (props) => {
-    const nav = useNavigate()
     const [quantity, setQuantity] = createSignal<number>()
     const [type, setType] = createSignal<StockType>()
     const [load, setLoad] = createSignal<boolean>(false)
@@ -26,7 +24,7 @@ const AddStock: Component<{ onSuccess: () => Promise<void> }> = (props) => {
             const web = await apiGetProducts(1, 5, search);
             setProducts(web.data.contents);
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
 
@@ -44,10 +42,7 @@ const AddStock: Component<{ onSuccess: () => Promise<void> }> = (props) => {
             setType()
             await showAlertSuccess(web.message)
         } catch (error) {
-            const code = await catchError(error)
-            if (code === 500) {
-                nav("/500")
-            }
+            await catchError(error)
         } finally {
             setLoad(false)
         }

@@ -3,6 +3,7 @@ import SummaryList from "../components/SummaryList";
 import { SummaryResponse } from "../apis/dtos/summary-dto";
 import { apiGetSummary } from "../apis/summary-api";
 import Loading from "../components/Loading";
+import { catchError } from "../helpers/catch-error";
 
 const DashboardPage: Component<{}> = (props) => {
     const [summary, setSummary] = createSignal<SummaryResponse>();
@@ -12,7 +13,7 @@ const DashboardPage: Component<{}> = (props) => {
             const web = await apiGetSummary()
             setSummary(web.data)
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
 

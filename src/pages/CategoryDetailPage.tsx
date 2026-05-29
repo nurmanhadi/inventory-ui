@@ -5,6 +5,7 @@ import { apiGetCategory } from "../apis/category-api";
 import Loading from "../components/Loading";
 import CategoryDetail from "../components/category/CategoryDetail";
 import UpdateCategory from "../components/category/UpdateCategory";
+import { catchError } from "../helpers/catch-error";
 
 const CategoryDetailPage: Component<{}> = (props) => {
     const params = useParams()
@@ -14,7 +15,7 @@ const CategoryDetailPage: Component<{}> = (props) => {
             const web = await apiGetCategory(id)
             setCategory(web.data)
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     onMount(() => {

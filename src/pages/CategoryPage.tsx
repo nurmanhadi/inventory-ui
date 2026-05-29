@@ -4,6 +4,7 @@ import { apiGetCategories } from "../apis/category-api";
 import Loading from "../components/Loading";
 import CategoryList from "../components/category/CategoryList";
 import AddCategory from "../components/category/AddCategory";
+import { catchError } from "../helpers/catch-error";
 
 const CategoryPage: Component<{}> = (props) => {
     const [categories, setCategories] = createSignal<CategoryResponse[]>();
@@ -12,7 +13,7 @@ const CategoryPage: Component<{}> = (props) => {
             const web = await apiGetCategories()
             setCategories(web.data)
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     onMount(() => {

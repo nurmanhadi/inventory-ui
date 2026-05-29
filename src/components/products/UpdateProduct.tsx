@@ -5,12 +5,10 @@ import { apiUpdateProduct } from "../../apis/products-api";
 import { apiGetCategories } from "../../apis/category-api";
 import { ProductResponse, ProductUpdateRequest } from "../../apis/dtos/product-dto";
 import LoadingLg from "../LoadingLg";
-import { useNavigate } from "@solidjs/router";
 import { catchError } from "../../helpers/catch-error";
 import { showAlertSuccess } from "../../helpers/alert";
 
 const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess: () => Promise<void> }> = (props) => {
-    const nav = useNavigate()
     const [name, setName] = createSignal<string>("")
     const [sku, setSku] = createSignal<string>("")
     const [price, setPrice] = createSignal<number>()
@@ -22,7 +20,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
             const web = await apiGetCategories()
             setCategories(web.data)
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     const handleSubmit = async (e: SubmitEvent) => {
@@ -44,10 +42,7 @@ const UpdateProduct: Component<{ id: string, product: ProductResponse, onSuccess
             setCategoryId()
             await showAlertSuccess(web.message)
         } catch (error) {
-            const code = await catchError(error)
-            if (code === 500) {
-                nav("/500")
-            }
+            await catchError(error)
         } finally {
             setLoad(false)
         }

@@ -5,10 +5,8 @@ import LoadingSm from "../LoadingSm";
 import { closeModal, showModal } from "../../helpers/modal";
 import { showAlertSuccess } from "../../helpers/alert";
 import { catchError } from "../../helpers/catch-error";
-import { useNavigate } from "@solidjs/router";
 
 const AddCategory: Component<{ onSuccess: () => Promise<void> }> = (props) => {
-    const nav = useNavigate()
     const [name, setName] = createSignal<string>("")
     const [load, setLoad] = createSignal<boolean>(false)
     const handleSubmit = async (e: SubmitEvent) => {
@@ -24,10 +22,7 @@ const AddCategory: Component<{ onSuccess: () => Promise<void> }> = (props) => {
             closeModal("my_modal_3")
             await showAlertSuccess(web.message)
         } catch (error) {
-            const code = await catchError(error)
-            if (code === 500) {
-                nav("/500")
-            }
+            await catchError(error)
         } finally {
             setLoad(false)
         }

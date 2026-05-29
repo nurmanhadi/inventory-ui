@@ -1,11 +1,13 @@
+import { useNavigate } from "@solidjs/router";
 import { showAlertError } from "./alert";
 
 export const catchError = async (error: unknown): Promise<number> => {
+    const nav = useNavigate()
     if (error instanceof HttpError) {
         await showAlertError(error.message)
         return error.statusCode
     } else {
-        await showAlertError("An unexpected error occurred")
+        nav("/500")
         console.error("unexpected error", error)
         return 500
     }

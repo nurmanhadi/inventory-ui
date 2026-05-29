@@ -4,6 +4,7 @@ import LoadingLg from "../LoadingLg";
 import { apiStockHistory } from "../../apis/stock-api";
 import { StockPeriod, StockType } from "../../helpers/stock-type";
 import { dateFormated } from "../../helpers/date-format";
+import { catchError } from "../../helpers/catch-error";
 
 const StockHistoryList: Component<{ id: string }> = (props) => {
     const [transaction, setTransaction] = createSignal<StockResponse[]>()
@@ -12,7 +13,7 @@ const StockHistoryList: Component<{ id: string }> = (props) => {
             const web = await apiStockHistory(1, 10, StockType.All, StockPeriod.Current, id)
             setTransaction(web.data.contents)
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     onMount(() => {

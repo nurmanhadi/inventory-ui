@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination";
 import Loading from "../components/Loading";
 import AddProduct from "../components/products/AddProduct";
 import { useSearchParams } from "@solidjs/router";
+import { catchError } from "../helpers/catch-error";
 
 const ProductPage: Component<{}> = (props) => {
     const [query, setQuery] = useSearchParams()
@@ -22,7 +23,7 @@ const ProductPage: Component<{}> = (props) => {
             setProducts(web.data.contents);
             setTotalPages(web.data.total_pages);
         } catch (error) {
-            console.error(error);
+            await catchError(error)
         }
     }
     createEffect(() => {
