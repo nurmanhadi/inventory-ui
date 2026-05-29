@@ -15,7 +15,7 @@ export const apiGetProducts = async (page: number, size: number, search?: string
     });
     const web: WebResponse<WebPagination<ProductResponse[]>> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web;
 }
@@ -26,7 +26,7 @@ export const apiGetProductById = async (id: string): Promise<WebResponse<Product
     });
     const web: WebResponse<ProductResponse> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web;
 }
@@ -41,7 +41,7 @@ export const apiAddProduct = async (request: ProductAddRequest): Promise<WebResp
     });
     const web: WebResponse<null> = await response.json();
     if (response.status !== 201) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -56,7 +56,7 @@ export const apiUpdateProduct = async (id: string, request: ProductUpdateRequest
     });
     const web: WebResponse<null> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -67,7 +67,7 @@ export const apiDeleteProduct = async (id: string): Promise<WebResponse<null>> =
     });
     const web: WebResponse<null> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 }

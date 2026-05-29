@@ -3,8 +3,12 @@ import { apiAddCategory } from "../../apis/category-api";
 import { CategoryRequest } from "../../apis/dtos/category-dto";
 import LoadingSm from "../LoadingSm";
 import { closeModal, showModal } from "../../helpers/modal";
+import { showAlertSuccess } from "../../helpers/alert";
+import { catchError } from "../../helpers/catch-error";
+import { useNavigate } from "@solidjs/router";
 
 const AddCategory: Component<{ onSuccess: () => Promise<void> }> = (props) => {
+    const nav = useNavigate()
     const [name, setName] = createSignal<string>("")
     const [load, setLoad] = createSignal<boolean>(false)
     const handleSubmit = async (e: SubmitEvent) => {
@@ -15,12 +19,15 @@ const AddCategory: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                 name: name()
             }
             const web = await apiAddCategory(category)
-            alert(web.message)
             await props.onSuccess()
             setName("")
             closeModal("my_modal_3")
+            await showAlertSuccess(web.message)
         } catch (error) {
-            console.error(error);
+            const code = await catchError(error)
+            if (code === 500) {
+                nav("/500")
+            }
         } finally {
             setLoad(false)
         }

@@ -6,11 +6,18 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CategoryPage from './pages/CategoryPage';
 import CategoryDetailPage from './pages/CategoryDetailPage';
 import TransactionPage from './pages/TransactionPage';
+import DashboardPage from './pages/DashboardPage';
+import InternalServcerErrorPage from './pages/InternalServcerErrorPage';
 
 const App: Component = () => {
   return (
     <Router>
       <Route path={"/"} component={PageLayout} >
+
+        {/* dashboard */}
+        <Route path={"/dashboard"}>
+          <Route path={"/"} component={DashboardPage} />
+        </Route>
 
         {/* categories */}
         <Route path={"/categories"}>
@@ -28,7 +35,12 @@ const App: Component = () => {
         <Route path={"/transactions"}>
           <Route path={"/"} component={TransactionPage} />
         </Route>
+
       </Route>
+
+      {/* internal server error */}
+      <Route path={"/500"} component={InternalServcerErrorPage} />
+
     </Router >
   );
 };

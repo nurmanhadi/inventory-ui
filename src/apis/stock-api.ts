@@ -19,7 +19,7 @@ export const apiAddStock = async (stock: StockRequest, type: StockType): Promise
     });
     const web: WebResponse<null> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -36,7 +36,7 @@ export const apiStockHistory = async (page: number, size: number, type: StockTyp
     });
     const web: WebResponse<WebPagination<StockResponse[]>> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 }

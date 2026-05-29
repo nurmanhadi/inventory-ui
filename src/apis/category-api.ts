@@ -12,7 +12,7 @@ export const apiAddCategory = async (category: CategoryRequest): Promise<WebResp
     });
     const web: WebResponse<CategoryResponse> = await response.json()
     if (response.status !== 201) {
-        throw new Error(web.message)
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -26,7 +26,7 @@ export const apiUpdateCategory = async (id: string, category: CategoryRequest): 
     });
     const web: WebResponse<null> = await response.json()
     if (response.status !== 200) {
-        throw new Error(web.message)
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -36,7 +36,7 @@ export const apiDeleteCategory = async (id: string): Promise<WebResponse<null>> 
     });
     const web: WebResponse<null> = await response.json()
     if (response.status !== 200) {
-        throw new Error(web.message)
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -46,7 +46,7 @@ export const apiGetCategories = async (): Promise<WebResponse<CategoryResponse[]
     });
     const web: WebResponse<CategoryResponse[]> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 }
@@ -56,7 +56,7 @@ export const apiGetCategory = async (id: string): Promise<WebResponse<CategoryRe
     });
     const web: WebResponse<CategoryResponse> = await response.json();
     if (response.status !== 200) {
-        throw new Error(web.message);
+        throw new HttpError(web.message, response.status);
     }
     return web
 } 

@@ -5,8 +5,12 @@ import { closeModal, showModal } from "../../helpers/modal";
 import { CategoryResponse } from "../../apis/dtos/category-dto";
 import { apiGetCategories } from "../../apis/category-api";
 import LoadingLg from "../LoadingLg";
+import { useNavigate } from "@solidjs/router";
+import { showAlertSuccess } from "../../helpers/alert";
+import { catchError } from "../../helpers/catch-error";
 
 const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
+    const nav = useNavigate()
     const [name, setName] = createSignal<string>("")
     const [sku, setSku] = createSignal<string>("")
     const [stock, setStock] = createSignal<number>(0)
@@ -35,7 +39,6 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
                 category_id: categoryId()!
             }
             const web = await apiAddProduct(request)
-            alert(web.message)
             await props.onSuccess()
             closeModal("my_modal_3")
             setName("")
@@ -43,8 +46,12 @@ const AddProduct: Component<{ onSuccess: () => Promise<void> }> = (props) => {
             setStock(0)
             setPrice(0)
             setCategoryId()
+            await showAlertSuccess(web.message)
         } catch (error) {
-            console.error(error);
+            const code = await catchError(error)
+            if (code === 500) {
+                nav("/500")
+            }
         } finally {
             setLoad(false)
         }
