@@ -30,21 +30,51 @@ git clone https://github.com/nurmanhadi/inventory-ui.git
 cd inventory-ui
 ```
 
-### 2. Install dependencies
+### 2. Create `.env` file
+```bash
+VITE_API_URL=example.com
+```
+
+### 3. Install dependencies
 ```bash
 bun install
 ```
 
-### 3. Run the application
+### 4. Run the application
 ```bash
 bun run dev
 ```
 
-The application will open at http://localhost:3000
-
 ### Build for production
 ```bash
 bun run build
+```
+
+### Docker Deployment
+
+#### Using Docker Compose (Recommended)
+```bash
+docker-compose up -d
+```
+
+The application will be available at http://localhost
+
+#### Using Docker directly
+```bash
+# Build the image
+docker build -t inventory-ui .
+
+# Run the container
+docker run -p 80:80 inventory-ui
+```
+
+#### Stop Docker container
+```bash
+# Using Docker Compose
+docker-compose down
+
+# Using Docker
+docker stop inventory-ui
 ```
 
 ## 📁 Folder Structure
