@@ -1,36 +1,109 @@
-## Usage
+# Inventory Management UI
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+A modern inventory management application to manage products, categories, and stock transactions with an easy-to-use interface.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## 🎯 Main Features
 
+- **Dashboard** - Stock summary and important statistics
+- **Product Management** - Add, view, edit, and delete products
+- **Category Management** - Organize products by categories
+- **Track Transactions** - Monitor all stock inflows and outflows
+- **Search** - Search products quickly
+- **Responsive** - Works on desktop, tablet, and mobile devices
+
+## 🛠️ Technology
+
+- **Frontend**: Solid.js + Vite + Tailwind CSS
+- **Language**: TypeScript
+- **Package Manager**: Bun
+
+## ⚙️ Requirements
+
+- Node.js 18+ or Bun
+- npm, yarn, or bun
+
+## 🚀 How to Run
+
+### 1. Download and navigate to the folder
 ```bash
-$ npm install # or pnpm install or yarn install
+git clone https://github.com/nurmanhadi/inventory-ui.git
+cd inventory-ui
 ```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+### 2. Install dependencies
+```bash
+bun install
+```
 
-## Available Scripts
+### 3. Run the application
+```bash
+bun run dev
+```
 
-In the project directory, you can run:
+The application will open at http://localhost:3000
 
-### `npm run dev` or `npm start`
+### Build for production
+```bash
+bun run build
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📁 Folder Structure
 
-The page will reload if you make edits.<br>
+```
+src/
+├── apis/              → Connection to backend server
+├── components/        → Display components
+├── configs/           → Application settings
+├── helpers/           → Helper functions
+└── pages/             → Main pages
+```
 
-### `npm run build`
+## 📱 Main Menu
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+**Dashboard** - View stock summary and statistics
+- Total products
+- Total categories
+- Stock in today
+- Stock out today
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+**Products** - Manage all products
+- View product list
+- Add new product
+- Edit product information
+- Delete product
 
-## Deployment
+**Categories** - Organize product categories
+- View all categories
+- Add new category
+- Edit or delete category
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+**Transactions** - Monitor stock movement
+- View transaction history
+- Record stock in/out
+- Filter by type and time
 
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+## 📸 Application Views
+
+### Dashboard
+![Dashboard](./docs/dashboard.png)
+
+### Categories
+![Categories](./docs/categories.png)
+
+### Products
+![Products](./docs/products.png)
+
+### Transactions
+![Transactions](./docs/transanctions.png)
+
+## 🔗 Connect to Server
+
+The application connects to the backend server via API at:
+- **Products**: `src/apis/products-api.ts`
+- **Categories**: `src/apis/category-api.ts`
+- **Transactions**: `src/apis/stock-api.ts`
+- **Dashboard**: `src/apis/summary-api.ts`
+
+## 📄 License
+
+MIT - Free to use for personal or commercial purposes
